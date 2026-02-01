@@ -9,22 +9,12 @@ def todo_list(request):
     return render(request, 'todoApp/todo_list.html' , {'todos': todos})
 
 def pending_todos(request):
-    todos = todo.objects.filter(is_completed=False)
-    response = ""
-
-    for todo in todos:
-        response += f"{todos.title}\n{todo.priority}\n{todo.due_date}"
-    
-    return HttpResponse(response)
+    todos = Todo.objects.filter(is_completed=False)
+    return render(request, 'todoApp/pending_todos.html' , {'todos': todos})
 
 def completed_todos(request):
     todos = Todo.objects.filter(is_completed = True)
-    response = ""
-
-    for todo in todos:
-        response += f"{todo.title}\n"
-
-    return HttpResponse(response)
+    return render(request, 'todoApp/completed_todos.html' , {'todos': todos})
     
 
 def add_todo(request):
@@ -58,5 +48,6 @@ def delete_todo(request, pk):
         return redirect('todo_list')
     
     return render(request, 'todoApp/todo_delete.html', {'todo': todo})
+
 
 
