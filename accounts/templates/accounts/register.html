@@ -1,0 +1,14 @@
+{% extends 'todoApp/base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Register</h2>
+
+<form method="POST">
+    {% csrf-token %}
+
+    {{ form.as_p }}
+
+    <button class="btn btn-success">Creat Account</button>
+</form>
+
+{% endblock %}
